@@ -1,26 +1,25 @@
-use crate::config::GroupConfig;
-use crate::prover::Proof;
+use num_bigint::BigUint;
+use crate::config::{GroupConfig, GroupParameters};
+use crate::prover3::Proof;
 
 pub struct Verifier {
-    config: GroupConfig,
+    params: GroupParameters,
 }
 
 impl Verifier {
     pub fn new(config: GroupConfig) -> Self {
-        Self { config }
+        Self { params: config.group_params() }
     }
-
-    pub fn verify(&self, proof: &Proof) -> bool {
-        todo!();
-        //let validate1 = self.config.parameters().g.modpow(&proof.r, &prover.p) == (prover.a.mul(prover.g.modpow(&cx, &prover.p)).modpow(&BigUint::one(), &prover.p));
-        //let validate2 = prover.h.modpow(&proof.r, &prover.p) == (prover.b.mul(prover.h.modpow(&cx, &prover.p)).modpow(&BigUint::one(), &prover.p));
-
-        //self.verifyy(&proof.r1, &proof.r2, &self.config.y1, &self.config.y2, &self.config.alpha, &self.config.beta, &proof.c, &proof.s, &self.config.p);
-    }
-
-    // fn verifyy(r1: &BigUint, r2: &BigUint, y1: &BigUint, y2: &BigUint, alpha: &BigUint, beta: &BigUint, c: &BigUint, s: &BigUint, p: &BigUint) -> bool {
-    //     r1.eq(&alpha.modpow(s, p).mul(&y1.modpow(c, p)).modpow(&1.to_biguint().unwrap(), p)) &&
-    //         r2.eq(&beta.modpow(s, p).mul(&y2.modpow(c, p)).modpow(&1.to_biguint().unwrap(), p) )
+    // fn verify_zero_knowledge_proof(&self, proof: &Proof) -> bool {
+    //     let GroupParameters { p, g, q } = &self.params;
+    //     // let cx = &proof.c * x;
+    //     // let validate1 = g.modpow(&proof.r, &p) == ((&proof.a * &g.modpow(&cx, &p)) % p);
+    //     // let validate2 = proof.h.modpow(&proof.r, &p) == ((&proof.b * proof.h.modpow(&cx, &p)) % p);
+    //     // validate1 && validate2
+    //
+    //     // let validate1 = proof.g.modpow(&proof.r, &proof.p) == ((&proof.a * &proof.y1.modpow(&proof.c, &proof.p)) % &proof.p);
+    //     // let validate2 = proof.h.modpow(&proof.r, &proof.p) == ((&proof.b * &proof.y2.modpow(&proof.c, &proof.p)) % &proof.p);
+    //     // let success = validate1 && validate2;
     // }
 }
 

@@ -1,7 +1,5 @@
-mod prover;
 mod verifier;
 mod config;
-mod prover2;
 mod prover3;
 
 use num_bigint::{BigUint, RandBigInt, ToBigUint};
@@ -90,26 +88,6 @@ fn main() {
 //         r2.eq(&beta.modpow(s, p).mul(&y2.modpow(c, p)).modpow(&1.to_biguint().unwrap(), p) )
 // }
 
-#[cfg(test)]
-mod tests {
-    //use super::*;
-    use num_bigint::ToBigUint;
-    use crate::config::GroupConfig;
-    use crate::prover::Prover;
-
-    #[test]
-    fn test() {
-        //let mut prover = Prover::new(6.to_biguint().unwrap(), GroupConfig::Group1024);
-        //let response = prover.response(&42.to_biguint().unwrap());
-        // let result = verify(&response.r1, &response.r2, &prover.y1, &prover.y2, &prover.alpha, &prover.beta, &response.c, &response.s, &prover.p);
-        // assert!(result);
-    }
-
-    #[test]
-    fn test2() {
-//        base();
-    }
-}
 
 /*
 chose random a, b - need not to be (?) a priem number
