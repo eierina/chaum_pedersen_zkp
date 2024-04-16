@@ -2,12 +2,14 @@ use num_bigint::{BigUint, ToBigUint};
 use rand::{Rng, thread_rng};
 use rand::distributions::Uniform;
 
+#[derive(Debug)]
 pub struct GroupParameters {
     pub p: BigUint, // Prime modulus, defines the finite field
     pub q: BigUint, // Order of the subgroup, must be a prime number
     pub g: BigUint, // Primary generator of the subgroup
 }
 
+#[derive(Debug, Clone)]
 pub struct ProtocolParams {
     pub p: BigUint, // Prime modulus, defines the finite field
     pub q: BigUint, // Order of the subgroup, must be a prime number
@@ -15,6 +17,7 @@ pub struct ProtocolParams {
     pub h: BigUint, // Secondary generator, used for additional proofs
 }
 
+#[derive(Debug)]
 pub enum GroupConfig {
     Group1024,
     Group2048_224,
@@ -52,8 +55,7 @@ impl GroupConfig {
             p: params.p.clone(),
             q: params.q.clone(),
             g: params.g.clone(),
-            h: params.g.modpow(&r, &params.q)
+            h: params.g.modpow(&r, &params.p)
         }
     }
 }
-
